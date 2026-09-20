@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "name": "Safe Water Access — Kogi State",
+    "location": "Kogi State, Nigeria",
+    "lat": 7.8,
+    "lng": 6.74,
+    "impactUnit": "households served",
+    "pricePerUnitOKB": "0.001",
+    "initialSupply": 955,
+    "verificationHash": "0x577f603f6c6ab51067220ab80beb8a2a8640b83e5412c803b151734da67f3aba",
+    "active": true
+  },
+  {
+    "id": 1,
+    "name": "Latrine Construction — Lagos",
+    "location": "Lagos, Nigeria",
+    "lat": 6.5244,
+    "lng": 3.3792,
+    "impactUnit": "latrines built",
+    "pricePerUnitOKB": "0.002",
+    "initialSupply": 500,
+    "verificationHash": "0x07c435e417a5193f7ab6ca8b82f0a35fa090baec2d1ee98d766e30cfb1b98f6a",
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Waste Safely Treated — Abuja",
+    "location": "Abuja, Nigeria",
+    "lat": 9.0765,
+    "lng": 7.3986,
+    "impactUnit": "tonnes",
+    "pricePerUnitOKB": "0.0015",
+    "initialSupply": 2000,
+    "verificationHash": "0x31b8eb794d104b07a98657ebdf2c534c5fb75c3fddde42391847b247c8c2113a",
+    "active": true
+  },
+  {
+    "id": 3,
+    "name": "Disease Cases Prevented — Kano",
+    "location": "Kano, Nigeria",
+    "lat": 12.0022,
+    "lng": 8.592,
+    "impactUnit": "cases",
+    "pricePerUnitOKB": "0.003",
+    "initialSupply": 300,
+    "verificationHash": "0xcb70e63447624e39d20bab8aefbc467d4a84c633a0f3dd740b3626aa383aac72",
+    "active": true
+  }
+]
