@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #070b14;
+  color: #e8edf6;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* cinematic ambient background — deep navy with a faint warm glow, no hard bands */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1100px 500px at 15% -8%, rgba(232, 176, 75, 0.07), transparent 60%),
+    radial-gradient(900px 420px at 92% -5%, rgba(56, 130, 246, 0.06), transparent 60%),
+    linear-gradient(180deg, #070b14 0%, #081020 45%, #070b14 100%);
+}
+
+.leaflet-container {
+  background: #0a111f;
+  height: 100%;
+  width: 100%;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.paper {
+  background: linear-gradient(180deg, rgba(232, 176, 75, 0.035), rgba(255, 255, 255, 0.012) 30%), #0c1322;
+  border: 1px solid rgba(232, 176, 75, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -18px rgba(0, 0, 0, 0.8);
+}
+
+/* gold rule under section headings */
+.gold-rule::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 2px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, #e8b04b, rgba(232, 176, 75, 0));
+  border-radius: 2px;
+}
+
+.ngo-pdf {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: #f5f1e6;
+  color: #2a2a28;
+  border-radius: 6px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.12);
+}
+
+/* thin elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(232, 176, 75, 0.25);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
