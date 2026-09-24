@@ -6,3 +6,5 @@ typechain-types/
 .env
 .env.local
 *.log
+.env.local
+frontend/out/
