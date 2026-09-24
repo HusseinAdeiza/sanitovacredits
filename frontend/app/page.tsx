@@ -111,7 +111,7 @@ export default function Home() {
         </Banner>
       ) : (
         <>
-          <section className="mx-auto mt-6 max-w-6xl px-4">
+          <section id="credits" className="mx-auto mt-6 max-w-6xl scroll-mt-24 px-4">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="gold-rule font-display text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
               Verified credits · live from X Layer
@@ -133,7 +133,7 @@ export default function Home() {
           </section>
 
           {/* Map + before/after */}
-          <section className="mx-auto mt-6 max-w-6xl px-4">
+          <section id="how" className="mx-auto mt-6 max-w-6xl scroll-mt-24 px-4">
             <h2 className="gold-rule font-display text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
               Where your impact lands
             </h2>
