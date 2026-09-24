@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import BeforeAfter from "@/components/BeforeAfter";
+import HowItWorks from "@/components/HowItWorks";
 import ProofMetricBanner from "@/components/ProofMetricBanner";
 import CreditCard, { type LiveCredit } from "@/components/CreditCard";
 import BuyModal from "@/components/BuyModal";
@@ -92,6 +93,14 @@ export default function Home() {
         </Banner>
       )}
 
+      {/* How it works — the 3-step story (static; always visible) */}
+      <section id="how" className="mx-auto mt-6 max-w-6xl scroll-mt-24 px-4">
+        <h2 className="gold-rule mb-4 font-display text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
+          How it works
+        </h2>
+        <HowItWorks />
+      </section>
+
       {noContract ? (
         <EmptyState
           title="Contract address not set"
@@ -133,10 +142,13 @@ export default function Home() {
           </section>
 
           {/* Map + before/after */}
-          <section id="how" className="mx-auto mt-6 max-w-6xl scroll-mt-24 px-4">
+          <section id="map" className="mx-auto mt-6 max-w-6xl scroll-mt-24 px-4">
             <h2 className="gold-rule font-display text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
               Where your impact lands
             </h2>
+            <p className="mb-3 text-xs text-slate-500">
+              Click a pin to fly to the project · use the +/− controls to zoom · drag to pan
+            </p>
             <div className="paper h-[420px] overflow-hidden p-2">
               <Map
                 live={credits!}

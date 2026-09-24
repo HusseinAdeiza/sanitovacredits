@@ -27,7 +27,8 @@ export default function Map({ live, selectedId, onSelect }: Props) {
       center={NIGERIA_CENTER}
       zoom={Math.round(NIGERIA_ZOOM)}
       style={{ height: "100%", width: "100%" }}
-      scrollWheelZoom
+      scrollWheelZoom={false}
+      zoomControl={true}
       className="rounded-2xl"
     >
       <TileLayer
