@@ -91,6 +91,25 @@ export function useWallet() {
     if (h) setTxHash(h);
   }, []);
 
+  // disconnect: best-effort wallet permission revoke + local state reset.
+  // The UI returns to "Connect Wallet" immediately; MetaMask may still list the
+  // site as permitted, so connect() after this resolves silently.
+  const disconnect = useCallback(async () => {
+    setAddress(null);
+    setChainId(null);
+    setError(null);
+    if (hasWallet()) {
+      try {
+        await (window as any).ethereum.request({
+          method: "wallet_revokePermissions",
+          params: [{ eth_accounts: {} }],
+        });
+      } catch {
+        /* older wallets may not support revoke — local reset still applies */
+      }
+    }
+  }, []);
+
   // silent reconnect on mount: if the site is already permitted, restore the session
   useEffect(() => {
     if (!hasWallet()) return;
@@ -157,6 +176,7 @@ export function useWallet() {
     txHash,
     pending,
     connect,
+    disconnect,
     switchNetwork,
     setBusy,
   };
