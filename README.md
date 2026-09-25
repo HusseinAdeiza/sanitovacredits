@@ -3,12 +3,16 @@
 > **One sentence:** We help corporates buy verified water, sanitation & hygiene (WASH)
 > impact credits on X Layer — **without trusting NGO PDFs.**
 
-**▶ [Demo video](media/sanitova_pitch.mp4)** — recorded end-to-end against the
-**public X Layer testnet (terigon, chainId 1952)** using the **real MetaMask browser
-extension** (v13.49, imported demo wallet, genuine connect + "Transaction request"
-popups): `buyCredit` and `retireCredit` confirmed on-chain (status 1) — buy
-`0xc7482648…` (block 41773005), retire `0x2ce8d5c4…` (block 41773153) — with the ESG
-retirement certificate. Score: Grieg *Morning Mood* (CC0). Composed with HyperFrames.
+**[Live demo](https://husseinadeiza.github.io/sanitovacredits/)** · **[Demo video](https://husseinadeiza.github.io/sanitovacredits/demo.mp4)** · **[Contract on explorer](https://www.okx.com/explorer/xlayer-test/address/0x35e8d7D25c91C25cD63F7e68a950d269EA3BD17d)**
+
+`Next.js 14` `Solidity 0.8.24` `OpenZeppelin 5` `ERC-1155` `ethers v6` `Leaflet/OSM` `X Layer (chainId 1952)`
+
+The demo video below was recorded end-to-end against the **public X Layer testnet
+(terigon, chainId 1952)** using the **real MetaMask browser extension** (v13.49, imported
+demo wallet, genuine connect + "Transaction request" popups): `buyCredit` and
+`retireCredit` confirmed on-chain (status 1) — buy `0xc7482648…` (block 41773005),
+retire `0x2ce8d5c4…` (block 41773153) — with the ESG retirement certificate.
+Score: Grieg *Morning Mood* (CC0). Composed with HyperFrames.
 
 Live, non-custodial, on-chain WASH impact registry for the **OKX Dev Day / X Layer**
 hackathon. A corporate ESG officer connects a wallet, buys a verified credit, sees the
@@ -55,19 +59,28 @@ minutes, ~$0.50**.
 
 ## How it works
 
-```
-                 ┌───────────────────────────  X Layer Testnet (1952)  ───────────────────────────┐
-                 │                                                                                  │
-  Verification   │  SanitovaCredits (ERC-1155)                                                      │
-  authority ─────┼─▶ setCreditMetadata(name, loc, lat, lng, unit, price, sha256Hash, supply)        │
-  (owner)         │      └─ mints a FIXED verified allocation (scarce by design)                     │
-                 │                                                                                  │
-  Corporate      │  buyCredit(id, amt) payable  ── pays pricePerUnit·amt OKB ─▶ treasury            │
-  buyer ─────────┼─  (transfers owner allocation → buyer; cannot inflate supply)                     │
-  (wallet)        │                                                                                  │
-  Corporate      │  retireCredit(id, amt)   ── burns holder credits ─▶ CreditRetired (immutable)    │
-  (ESG) ─────────┼─  (the on-chain retirement certificate)                                           │
-                 └──────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+sequenceDiagram
+    autonumber
+    participant VA as Verification authority (owner)
+    participant C as SanitovaCredits (ERC-1155)
+    participant B as Corporate buyer (MetaMask)
+    participant A as Auditor / public
+
+    Note over VA,C: 1. CERTIFY
+    VA->>C: setCreditMetadata(name, loc, lat/lng, unit, price, sha256(inspection), supply)
+    C->>C: mint FIXED allocation to owner (scarce by design — no open mint)
+
+    Note over B,C: 2. BUY
+    B->>C: buyCredit(id, amt) + pricePerUnit·amt OKB
+    C->>C: safeTransferFrom(owner → buyer), allocation draws down
+    C->>B: CreditPurchased event (public, timestamped)
+    C-->>VA: OKB settles to project treasury
+
+    Note over B,A: 3. RETIRE
+    B->>C: retireCredit(id, amt)
+    C->>C: burn(holder, id, amt) — permanent
+    C->>A: CreditRetired event = the ESG certificate (tx hash verifiable by anyone)
 ```
 
 **Key design decision — scarcity:** credits are *scarce verified assets*, not an open
